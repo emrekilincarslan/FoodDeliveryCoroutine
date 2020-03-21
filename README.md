@@ -1,0 +1,26 @@
+# OnlineFood
+
+This app is current Android Architecture state using Android development best practices.
+ 
+Introduction
+The application uses Clean Architecture based on MVVM and Repository patterns. Implemented Architecture principles follow Google
+recommended Guide to app architecture.
+
+The application is written entirely in Kotlin.
+
+Android Jetpack is used as an Architecture glue including but not limited to ViewModel, LiveData, Lifecycles, Navigation, 
+Room and Data Binding. See a complete list in "Libraries used" section.
+
+The application does network HTTP requests via Retrofit, OkHttp and GSON. Loaded data is saved to SQL based database Room, 
+which serves as single source of truth and support offline mode.
+
+Kotlin Coroutines manage background threads with simplified code and reducing needs for callbacks. 
+Combination of Coroutines and Kotlin build in functions (transformation, collections) are preferred over RxJava 2.
+
+Work manager does synchronisation job being compatible with Doze Mode and using battery efficiently. Navigation component 
+manages in-app navigation.
+
+Dagger 2 is used for dependency injection.
+
+Glide is used for image loading
+ 
