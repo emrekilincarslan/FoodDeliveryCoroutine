@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" >
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+        <variable
+            name="fragment"
+            type="com.delivery.mobile.restaurants.ui.RestaurantsFragment" />
+
+        <variable
+            name="restaurant"
+            type="com.delivery.mobile.restaurants.data.Restaurant" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{clickListener}">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/favourited"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                app:lottie_loop="false"
+                android:current_status="@{restaurant.favourited}"
+                android:onClick="@{()->fragment.favouriteClicked(restaurant) }"
+                app:lottie_fileName="favourited.json"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+            <ImageView
+                android:id="@+id/rest_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/food_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                style="?android:attr/ratingBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:rating="@{restaurant.sortingValues.ratingAverage}"
+                android:scaleX=".4"
+                android:scaleY=".4"
+                android:transformPivotX="0dp"
+                android:transformPivotY="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rest_image"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/txy_popularity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:text="@{@string/popularity(String.valueOf(restaurant.sortingValues.popularity))}"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@id/rest_image"
+                app:layout_constraintEnd_toEndOf="@id/rest_image"
+                app:layout_constraintBottom_toBottomOf="@id/ratingBar"
+                />
+
+            <TextView
+                android:id="@+id/rest_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:text="@{restaurant.name}"
+                android:textColor="@android:color/black"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:layout_marginStart="@dimen/margin_normal"
+                app:layout_constraintStart_toEndOf="@id/rest_image"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/openClose"
+                android:src="@drawable/open"
+                android:enabled="true"
+                android:drawableStart="@{restaurant.status.equalsIgnoreCase(`closed`)?@drawable/closed:@drawable/open}"
+                android:text="@{restaurant.status}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/rest_image"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_margin="10dp"
+
+                />
+
+            <TextView
+                android:id="@+id/txtavarage_cost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/restprice"
+                android:text="@{@string/avarage(String.valueOf(restaurant.sortingValues.averageProductPrice))}"
+                android:padding="10dp"
+                app:layout_constraintStart_toEndOf="@id/rest_image"
+                app:layout_constraintBottom_toTopOf="@+id/openClose"
+
+                />
+
+            <TextView
+                android:id="@+id/txtmin_cost"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/mincost"
+                android:text="@{@string/mincost(String.valueOf(restaurant.sortingValues.minCost))}"
+                android:padding="10dp"
+                app:layout_constraintBottom_toTopOf="@id/txtavarage_cost"
+                app:layout_constraintStart_toEndOf="@+id/rest_image"
+                />
+
+            <TextView
+                android:id="@+id/txtdelivery_cost"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/delivery"
+                android:text="@{@string/price(String.valueOf(restaurant.sortingValues.deliveryCosts))}"
+                android:padding="5dp"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+</layout>
+
+    <!--android:text="@{String.valueOf(restaurant.sortingValues.popularity)}"-->

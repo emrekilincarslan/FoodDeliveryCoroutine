@@ -1,0 +1,21 @@
+<resources>
+
+    <!-- Resources that do not require translation -->
+    <string name="app_name" translatable="false">DELIVERY®</string>
+    <string name="navigation_drawer_header_title" translatable="false">DELIVERY®</string>
+    <string name="price">%s lv.</string>
+    <string name="mincost"> min %s lv.</string>
+    <string name="avarage">avg %s lv.</string>
+    <string name="popularity">( %s )</string>
+
+    <!-- Translatable resources -->
+    <string name="filter" translation_description="Common Filter">Filter</string>
+    <string name="grid" translation_description="Common Filter">Switch between grid and list</string>
+    <string name="restaurants_title">Browse Restaurants</string>
+    <string name="navigation_drawer_header_content_description">Navigation drawer header logo</string>
+    <string name="menu_item_share" translation_description="The label for the Share menu item">Share</string>
+
+    <!-- Accessibility -->
+    <string name="search_hint">Search for Restaurants</string>
+
+</resources>
